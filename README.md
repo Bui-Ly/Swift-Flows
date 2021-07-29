@@ -2,7 +2,7 @@
 
 ## Documentation
 
-* [Move view when keyboard is shown (guide)](#Move view when keyboard is shown (guide))
+* [Move view when keyboard is shown (guide)](#move view when keyboard is shown (guide))
 
 
 ## Move view when keyboard is shown (guide)
