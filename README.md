@@ -26,6 +26,5 @@ func addDoneButtonOnKeyboard(){
         textfield.inputAccessoryView = doneToolbar
     }
 ```
-![Simulator Screen Shot - iPhone 11 - 2021-07-29 at 22 33 57](https://user-images.githubusercontent.com/45566801/127521830-50cce90f-b07f-4b7d-93f0-efa7e29b7da3.png)
 
 
