@@ -3,9 +3,10 @@
 
 ## Documentation
 
-* [Split an array into chunks](#split_an_array_into_chunks)
+* [Split an array into chunks](#split-an-array-into-chunks)
 * [Move view when keyboard is shown (guide)](#move-view-when-keyboard-is-shown-(guide))
 * [Add done button on keyboard](#add-done-button-on-keyboard)
+
 
 ## Split an array into chunks
 ```swift
