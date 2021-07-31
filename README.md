@@ -4,7 +4,7 @@
 ## Documentation
 
 * [Split an array into chunks](#split-an-array-into-chunks)
-* [Move view when keyboard is shown (guide)](#move-view-when-keyboard-is-shown-(guide))
+* [Move view when keyboard is shown](#move-view-when-keyboard-is-shown)
 * [Add done button on keyboard](#add-done-button-on-keyboard)
 
 
@@ -22,7 +22,7 @@ let numbers = Array(1...10)
 let result = numbers.chunked(into: 4) //Output: [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]]
 ```
 
-## Move view when keyboard is shown (guide)
+## Move view when keyboard is shown
 Flow [blog](https://fluffy.es/move-view-when-keyboard-is-shown/)
 
 ## Add done button on keyboard
