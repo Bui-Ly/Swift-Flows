@@ -3,9 +3,23 @@
 
 ## Documentation
 
+* [Split an array into chunks](#split_an_array_into_chunks)
 * [Move view when keyboard is shown (guide)](#move-view-when-keyboard-is-shown-(guide))
 * [Add done button on keyboard](#add-done-button-on-keyboard)
 
+## Split an array into chunks
+```swift
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        return stride(from: 0, to: count, by: size).map {
+            Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+}
+
+let numbers = Array(1...10)
+let result = numbers.chunked(into: 4) //Output: [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]]
+```
 
 ## Move view when keyboard is shown (guide)
 Flow [blog](https://fluffy.es/move-view-when-keyboard-is-shown/)
