@@ -6,6 +6,7 @@
 * [Split an array into chunks](#split-an-array-into-chunks)
 * [Move view when keyboard is shown](#move-view-when-keyboard-is-shown)
 * [Add done button on keyboard](#add-done-button-on-keyboard)
+* [Type files](#type-files)
 
 
 ## Split an array into chunks
@@ -43,5 +44,14 @@ func addDoneButtonOnKeyboard(){
     }
 ```
 <img width="292" alt="Screen Shot 2021-07-29 at 22 45 09" src="https://user-images.githubusercontent.com/45566801/127523263-90fe1161-8c7c-448d-b920-8d810c6ec647.png">
+
+## Type files
+```swift
+import MobileCoreServices
+
+ let pdfType = kUTTypePDF as String
+ let audioType = kUTTypeAudio as String
+    .....
+```
 
 
