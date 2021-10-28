@@ -8,7 +8,7 @@
 * [Move view when keyboard is shown](#move-view-when-keyboard-is-shown)
 * [Add done button on keyboard](#add-done-button-on-keyboard)
 * [Type files](#type-files)
-* [Hide Keyboard When Tapped Around](#Hide Keyboard When Tapped Around)
+* [Hide Keyboard When Tapped Around](#hide-keyboard-when-tapped-around)
 
 
 ## Split an array into chunks
