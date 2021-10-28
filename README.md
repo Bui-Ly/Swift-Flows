@@ -1,5 +1,6 @@
 
 # Swift-Flows
+> This is a tips and trick with Swift
 
 ## Documentation
 
@@ -53,5 +54,21 @@ import MobileCoreServices
  let audioType = kUTTypeAudio as String
     // .....
 ```
+
+## Hide Keyboard When Tapped Around
+```swift
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+```
+
 
 
