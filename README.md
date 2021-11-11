@@ -4,17 +4,34 @@
 
 ## Documentation
 
-* [Split an array into chunks](#split-an-array-into-chunks)
 * [Move view when keyboard is shown](#move-view-when-keyboard-is-shown)
 * [Type files](#type-files)
+* [Collection Types](#collection-types)
+    - [Split An Array Into Chunks](#split-an-array-into-chunks)
+* [Strings and Characters](#strings-and-characters)
+*   - [Generate List Aplhabet](#generate-list-aplhabet)
+*   - [Format Numbers](#format-numbers)
 * [TextField](#textfield)
     - [Hide Keyboard When Tapped Around](#hide-keyboard-when-tapped-around)
     - [Add Done Button to Keyboard](#add-done-button-to-keyboard)
     - [Add LeftView to TextField](#add-leftview-to-textfield)
     - [Get Text Display in TextField](#get-text-display-in-textfield)
+    - 
+## Move View When Keyboard Is Shown
+Flow [blog](https://fluffy.es/move-view-when-keyboard-is-shown/)
 
+## Type Files
+```swift
+import MobileCoreServices
 
-## Split An Array Into Chunks
+ let pdfType = kUTTypePDF as String
+ let audioType = kUTTypeAudio as String
+    // .....
+```
+## Collection Types
+> All tips and trick with Collection Types
+
+#### Split An Array Into Chunks
 ```swift
 extension Array {
     func chunked(into size: Int) -> [[Element]] {
@@ -28,16 +45,33 @@ let numbers = Array(1...10)
 let result = numbers.chunked(into: 4) //Output: [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10]]
 ```
 
-## Move View When Keyboard Is Shown
-Flow [blog](https://fluffy.es/move-view-when-keyboard-is-shown/)
+## Strings and Characters
+> All tips and trick with Strings and Characters
 
-## Type Files
+#### Generate List Aplhabet
 ```swift
-import MobileCoreServices
+let alphabet = (97...122)
+    .map { Character(UnicodeScalar($0)) }
+    .map { String($0) } // lowercased
 
- let pdfType = kUTTypePDF as String
- let audioType = kUTTypeAudio as String
-    // .....
+// output: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+```
+#### Format Numbers
+```swift
+extension UIViewController {
+    func formatPrice(price: String, locacle: Locale = .init(identifier: "vi_VN")) -> String {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = ","
+        formatter.locale = locacle
+        guard let price = Double(price) as NSNumber? else { return "N/A"}
+        
+        return formatter.string(from: price)!
+        
+        // output: formatPrice(price: "10000000") - 10,000,000
+    }
+}
 ```
 
 ## TextField
