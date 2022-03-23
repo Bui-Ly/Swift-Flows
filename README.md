@@ -16,7 +16,10 @@
     - [Add Done Button to Keyboard](#add-done-button-to-keyboard)
     - [Add LeftView to TextField](#add-leftview-to-textfield)
     - [Get Text Display in TextField](#get-text-display-in-textfield)
-    - 
+* [Get URL from PHAsset](#get-url-from-phasset)
+* [Get name file from PHAsset](#get-name-file-from-phasset)
+* [Load image from URL](#load-image-from-url)
+
 ## Move View When Keyboard Is Shown
 Flow [blog](https://fluffy.es/move-view-when-keyboard-is-shown/)
 
@@ -182,6 +185,108 @@ extension TextFieldComponentsViewController: UITextFieldDelegate {
         let textToDisplay = currentText.replacingCharacters(in: stringRange, with: string)
         print(textToDisplay)
         return true
+    }
+}
+```
+
+## Get URL from PHAsset
+```swift
+extension PHAsset {
+    func getURLFromPHAsset(completionHandler : @escaping ((_ responseURL : URL?) -> Void)){
+        if self.mediaType == .image {
+            let options: PHContentEditingInputRequestOptions = PHContentEditingInputRequestOptions()
+            options.canHandleAdjustmentData = {(adjustmeta: PHAdjustmentData) -> Bool in
+                return true
+            }
+            self.requestContentEditingInput(
+                with: options,
+                completionHandler: {(contentEditingInput: PHContentEditingInput?, info: [AnyHashable : Any]) -> Void in
+                    completionHandler(contentEditingInput!.fullSizeImageURL as URL?)
+                }
+            )
+        } else if self.mediaType == .video {
+            let options: PHVideoRequestOptions = PHVideoRequestOptions()
+            options.version = .original
+            PHImageManager.default().requestAVAsset(
+                forVideo: self,
+                options: options,
+                resultHandler: {(asset: AVAsset?, audioMix: AVAudioMix?, info: [AnyHashable : Any]?) -> Void in
+                    if let urlAsset = asset as? AVURLAsset {
+                        let localVideoUrl: URL = urlAsset.url as URL
+                        completionHandler(localVideoUrl)
+                    } else {
+                        completionHandler(nil)
+                    }
+                }
+            )
+        }
+    }
+}
+```
+
+## Get name file from PHAsset
+```swift
+extension PHAsset {
+    
+    var primaryResource: PHAssetResource? {
+        let types: Set<PHAssetResourceType>
+        
+        switch mediaType {
+        case .video:
+            types = [.video, .fullSizeVideo]
+        case .image:
+            types = [.photo, .fullSizePhoto]
+        case .audio:
+            types = [.audio]
+        case .unknown:
+            types = []
+        @unknown default:
+            types = []
+        }
+        
+        let resources = PHAssetResource.assetResources(for: self)
+        let resource = resources.first { types.contains($0.type)}
+        
+        return resource ?? resources.first
+    }
+    
+    var originalFilename: String {
+        guard let result = primaryResource else {
+            return "file"
+        }
+        
+        return result.originalFilename
+    }
+}
+```
+
+## Load image from URL
+```swift
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+    
+    func load(urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }
 ```
