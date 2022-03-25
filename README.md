@@ -20,11 +20,15 @@
 * [Get name file from PHAsset](#get-name-file-from-phasset)
 * [Load image from URL](#load-image-from-url)
 * [Scale Preserving Aspect Ratio](#scale-preserving-aspect-ratio)
+* [Make app default theme](#make-app-default-theme)
+* [Capitalizing First Letter](#capitalizing-first-letter)
 
 ## Move View When Keyboard Is Shown
+
 Flow [blog](https://fluffy.es/move-view-when-keyboard-is-shown/)
 
 ## Type Files
+
 ```swift
 import MobileCoreServices
 
@@ -36,6 +40,7 @@ import MobileCoreServices
 > All tips and trick with Collection Types
 
 #### Split An Array Into Chunks
+
 ```swift
 extension Array {
     func chunked(into size: Int) -> [[Element]] {
@@ -53,6 +58,7 @@ let result = numbers.chunked(into: 4) //Output: [[1, 2, 3, 4], [5, 6, 7, 8], [9,
 > All tips and trick with Strings and Characters
 
 #### Generate List Aplhabet
+
 ```swift
 let alphabet = (97...122)
     .map { Character(UnicodeScalar($0)) }
@@ -61,6 +67,7 @@ let alphabet = (97...122)
 // output: ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 ```
 #### Format Numbers
+
 ```swift
 extension UIViewController {
     func formatPrice(price: String, locacle: Locale = .init(identifier: "vi_VN")) -> String {
@@ -177,6 +184,7 @@ class ViewController: UIViewController {
 }
 ```
 #### Get Text Display in TextField
+
 ```swift
 extension TextFieldComponentsViewController: UITextFieldDelegate {
     
@@ -191,6 +199,7 @@ extension TextFieldComponentsViewController: UITextFieldDelegate {
 ```
 
 ## Get URL from PHAsset
+
 ```swift
 extension PHAsset {
     func getURLFromPHAsset(completionHandler : @escaping ((_ responseURL : URL?) -> Void)){
@@ -226,6 +235,7 @@ extension PHAsset {
 ```
 
 ## Get name file from PHAsset
+
 ```swift
 extension PHAsset {
     
@@ -262,6 +272,7 @@ extension PHAsset {
 ```
 
 ## Load image from URL
+
 ```swift
 extension UIImageView {
     func load(url: URL) {
@@ -293,6 +304,7 @@ extension UIImageView {
 ```
 
 ## Scale Preserving Aspect Ratio
+
 ```swift
 extension UIImage {
     func scalePreservingAspectRatio(targetSize: CGSize) -> UIImage {
@@ -321,6 +333,35 @@ extension UIImage {
         }
         
         return scaledImage
+    }
+}
+```
+
+## Make app default theme
+
+```swift
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    var window: UIWindow?
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
+        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
+        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        guard let _ = (scene as? UIWindowScene) else { return }
+        window?.overrideUserInterfaceStyle = .dark
+    }
+ }
+```
+
+## Capitalizing First Letter
+
+```swift
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
     }
 }
 ```
