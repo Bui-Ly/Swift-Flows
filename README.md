@@ -11,6 +11,7 @@
 * [Strings and Characters](#strings-and-characters)
 *   - [Generate List Aplhabet](#generate-list-aplhabet)
 *   - [Format Numbers](#format-numbers)
+*   - [Standard String](#standard-string)
 * [TextField](#textfield)
     - [Hide Keyboard When Tapped Around](#hide-keyboard-when-tapped-around)
     - [Add Done Button to Keyboard](#add-done-button-to-keyboard)
@@ -83,6 +84,13 @@ extension UIViewController {
         // output: formatPrice(price: "10000000") - 10,000,000
     }
 }
+```
+#### Standard String
+
+```swift
+ let wrongString = "  asfd saf   asfj   sdf s\n sdf sf    \nz\n"
+ let standardString = wrongString.replacingOccurrences(of: #"\s\s+"#, with: " ", options: .regularExpression, range: nil).trimmingCharacters(in: .whitespacesAndNewlines)
+ // output:asfd saf asfj sdf s sdf sf z
 ```
 
 ## TextField
