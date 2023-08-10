@@ -23,6 +23,7 @@
 * [Scale Preserving Aspect Ratio](#scale-preserving-aspect-ratio)
 * [Make app default theme](#make-app-default-theme)
 * [Capitalizing First Letter](#capitalizing-first-letter)
+* [Capitalizing First Letter](#tapped-specil-text-in-uiLabel)
 
 ## Move View When Keyboard Is Shown
 
